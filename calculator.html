@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="/styles/style.css" />
+  </head>
+
+  <body>
+    <section>
+      <h2>Add two numbers</h2>
+      <form class="foradd" method="GET" action="/add">
+        <input class="addend" type="text" /> +
+        <input class="addend" type="text" /> <button type="submit">=</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Subtract two numbers</h2>
+      <form class="forsub" method="GET" action="/subtract">
+        <input name="minuend" type="text" /> -
+        <input name="subtrahend" type="text" />
+        <button class="subtractnow" type="submit">=</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Multiply Two Numbers</h2>
+      <form class="formult" method="POST" action="/multiply">
+        <input name="multiplier" type="text" /> *
+        <input name="multiplicand" type="text" />
+        <button type="submit">=</button>
+      </form>
+    </section>
+
+    <script>
+      let addform = document.querySelector(".foradd");
+      addform.addEventListener("submit", (event) => {
+        let addendInputs = addform.querySelectorAll(".addend");
+        if (addendInputs.length !== 2) {
+          return;
+        }
+        let addends = [addendInputs[0].value, addendInputs[1].value];
+        event.target.action = `/add/${addends[0]}/${addends[1]}`;
+      });
+    </script>
+  </body>
+</html>
